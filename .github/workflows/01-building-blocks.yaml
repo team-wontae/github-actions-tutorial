@@ -1,0 +1,20 @@
+name: 01 - Building Blocks
+on: push
+
+jobs:
+  echo-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo "Hello, world!"
+  echo-goodbye:
+    runs-on: ubunt-latest
+    steps:
+      - name: Failed step
+        run: | # multi-line script
+          echo "I will fail"
+          exit 1
+        # By default, step 하나가 실패하면 그를 담은 job도 fail하고,
+        # 전체 workflow가 fail하게 된다
+      - name: Say goodbye
+        run: echo "Goodbye!"
