@@ -10,10 +10,10 @@ jobs:
   echo-goodbye:
     runs-on: ubunt-latest
     steps:
-      - name: Failed step
+      - name: Successful step
         run: | # multi-line script
-          echo "I will fail"
-          exit 1
+          echo "I will succeed"
+          exit 0
         # By default, step 하나가 실패하면 그를 담은 job도 fail하고,
         # 전체 workflow가 fail하게 된다
       - name: Say goodbye
