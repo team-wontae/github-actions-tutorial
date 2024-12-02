@@ -1,6 +1,6 @@
 name: 03 - Workflow Runners
 
-on: push
+on: workflow_dispatch
 jobs:
   ubuntu-echo:
     runs-on: ubuntu-latest
@@ -17,6 +17,14 @@ jobs:
         shell: bash
         # windows powershell에서 environment variable syntax가
         # $VARIABLE이 아니기 때문에 shell을 bash로 바꿔주는 것
+        # → 각 OS의 shell에 맞는 script문법을 써야합니다
         run: |
           echo "This job is running on an Windows runner."
+          echo "Runner OS: $RUNNER_OS"
+  mac-echo:
+    runs-on: macos-latest
+    steps:
+      - name: Show OS
+        run: |
+          echo "This job is running on an MacOs runner."
           echo "Runner OS: $RUNNER_OS"
