@@ -9,4 +9,14 @@ jobs:
         run: |
           echo "This job is running on an Ubuntu runner."
           echo "Runner OS: $RUNNER_OS"
-        # environment variable
+        # Linux environment variable syntax
+  windows-echo:
+    runs-on: windos-latest
+    steps:
+      - name: Show OS
+        shell: bash
+        # windows powershell에서 environment variable syntax가
+        # $VARIABLE이 아니기 때문에 shell을 bash로 바꿔주는 것
+        run: |
+          echo "This job is running on an Windows runner."
+          echo "Runner OS: $RUNNER_OS"
