@@ -1,0 +1,15 @@
+name: 04 - Using Actions
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "0:  Checkout the code from repository"
+        uses: actions/checkout@v4
+        # Workflow가 같은 repo의 .github 폴더에 정의되어있지만
+        # Default적으로 코드에 접근(Check out)하는 기능은 없다
+        # 왜냐면 코드와 아무런 상관없는 workflow가 있을 수 있기 때문이다
+      - name: Printing folders(optional)
+        run: ls
+        # To see the output of the above github action
