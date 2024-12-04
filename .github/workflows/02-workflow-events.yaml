@@ -1,12 +1,5 @@
 name: 02 - Workflow Events
 on:
-  push:
-  pull_request:
-  schedule:
-    - cron: "*/5 0 * * *"
-    # Cron expression
-    # 6개는 optional인데, github actions에서는 5까지만 가능
-    # 매분 은 매 5분부터 supporting됨
   workflow_dispatch:
     # enables manual trigger from clicking UI
 
