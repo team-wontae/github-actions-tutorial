@@ -1,0 +1,16 @@
+name: 05 - 1 - Event Filters and Activity Types
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      # OR
+    branches:
+      - main
+    # 트리거마다 옵션이 다른데, 여기서의 branch는 pr을 받을 브랜치
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Running whenever a PR is opend or synchronized & base branch is main"
