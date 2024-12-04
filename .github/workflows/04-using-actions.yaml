@@ -21,3 +21,6 @@ jobs:
         run: npm ci
         working-directory: react-app
         # package-lock.json 파일이 있는 경로로 안내해줘야 한다
+      - name: Run react tests
+        run: npm run test
+        working-directory: react-app
