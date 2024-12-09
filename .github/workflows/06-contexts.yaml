@@ -13,9 +13,17 @@ on:
         type: boolean
         default: false
 
+# Define env variable usauble at workflow, job, or step level
+env:
+  MY_WORKFLOW_VAR: "workflow"
+  MY_OVERWRITTEN_VAR: "workflow"
+
 jobs:
   echo-data:
     runs-on: ubuntu-latest
+    env:
+      MY_JOB_VAR: "job"
+      MY_OVERWRITTEN_VAR: "job"
     steps:
       - name: Display information
         run: |
@@ -33,3 +41,10 @@ jobs:
 
         # Repo settings → Security → Secrets and variables → Actions
         # 에서 더할 수 있고, 모든 action에서 사용 가능하다
+      - name: "Print Env Variables :"
+        env:
+          MY_OVERWRITTEN_VAR: "step"
+          # Overwriting workflow → job → step
+        run: |
+          echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}"
+          echo "Overwritten env: ${{env.MY_OVERWRITTEN_VAR}}"
