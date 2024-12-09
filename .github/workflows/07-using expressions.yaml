@@ -13,14 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "[debug] print start-up data"
-        if: ${{ inputs.debug }}
+        # if 키워드가 있으면 이미 expression으로 컴파일되기때문에
+        # brackets 필요 없다
+        if: inputs.debug
         run: |
           echo "Triggered by: ${{github.event_name}}"
           echo "Branch: ${{github.ref}}"
           echo "Commit SHA: ${{github.sha}}"
           echo "Runner OS: ${{runner.os}}"
       - name: "[debug] print when triggered from main"
-        if: ${{ inputs.debug && github.ref == 'refs/heads/main'}}
+        if: inputs.debug && github.ref == 'refs/heads/main'
         # refs/heads/<branch_name>: branch가 main branch이다
         run: |
           echo "Triggered from main"
