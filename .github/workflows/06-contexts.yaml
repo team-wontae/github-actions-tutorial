@@ -1,0 +1,23 @@
+name: 06 - Contexts
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  echo-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display information
+        run: |
+          echo "Event Name: ${{github.event_name}}"
+          echo "Ref: ${{github.ref}}"
+          echo "SHA: ${{github.sha}}"
+          echo "Actor: ${{github.actor}}"
+          echo "Run ID: ${{github.run_id}}"
+          echo "Run number: ${{github.run_number}}"
+      - name: Retrieve Variable
+        run: |
+          echo "Variable value: ${{vars.MY_VAR}}"
+        # MY_VAR를 Repo에서 정의할것이기 때문에, 해당 변수가 존재하는지는
+        # 실행 전에 알 수 없다. 그러므로 Warning이 발생하는 것
