@@ -1,8 +1,16 @@
 name: 06 - Contexts
+run-name: 06 - Contexts | DEBUG -${{inputs.debug}}
 
 on:
   push:
+    # 다만, input이 push event에는 정의되지 않았으므로
+    # push event일때는 inputs.debug context를 사용할 수 없다
   workflow_dispatch:
+    inputs:
+      # input name이 debug
+      debug:
+        type: boolean
+        default: false
 
 jobs:
   echo-data:
