@@ -2,9 +2,9 @@ name: 06 - Contexts
 run-name: 06 - Contexts | DEBUG -${{inputs.debug}}
 
 on:
-  push:
-    # 다만, input이 push event에는 정의되지 않았으므로
-    # push event일때는 inputs.debug context를 사용할 수 없다
+  # push: (WRAP UP)
+  # 다만, input이 push event에는 정의되지 않았으므로
+  # push event일때는 inputs.debug context를 사용할 수 없다
   workflow_dispatch:
     #
     inputs:
@@ -45,6 +45,14 @@ jobs:
         env:
           MY_OVERWRITTEN_VAR: "step"
           # Overwriting workflow → job → step
+        run: |
+          echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}"
+          echo "Overwritten env: ${{env.MY_OVERWRITTEN_VAR}}"
+
+  echo-data2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Env Variables
         run: |
           echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}"
           echo "Overwritten env: ${{env.MY_OVERWRITTEN_VAR}}"
