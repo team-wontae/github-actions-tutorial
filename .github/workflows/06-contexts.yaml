@@ -21,3 +21,6 @@ jobs:
           echo "Variable value: ${{vars.MY_VAR}}"
         # MY_VAR를 Repo에서 정의할것이기 때문에, 해당 변수가 존재하는지는
         # 실행 전에 알 수 없다. 그러므로 Warning이 발생하는 것
+
+        # Repo settings → Security → Secrets and variables → Actions
+        # 에서 더할 수 있고, 모든 action에서 사용 가능하다
