@@ -24,7 +24,14 @@ This has been edited on behalf of 05-1 action.
 - Multiple workflows variable
 
   - organization, repository and enviornment level
+
     ```bash
     echo "Hello ${{vars.NAME}}!"
     # vars context으로 접근해야 한다.
     ```
+
+    ![Environment, Repository and Organization variables](https://github.com/user-attachments/assets/22633e94-5416-4ff5-8693-d07827885df5)
+
+    - Organization 만들고, organization value를 만들기 위해 리포지토리를 organization으로 옮김
+    - Repository variables은 Repo에서 설정가능
+    - Enviornment variables은 dev, prod, staging같은 각각의 환경에서 쓰이는 변수
