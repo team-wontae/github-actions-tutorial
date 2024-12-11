@@ -17,9 +17,6 @@ jobs:
       - name: Bug step
         if: ${{!cancelled() && contains(github.event.pull_request.title, 'fix')}}
         run: echo "I am bug fix"
-      - name: Failing step
-        run: exit 1
-        # step automatically fails
       - name: I will be skipped
         if: success()
         # execute only previous steps succeed

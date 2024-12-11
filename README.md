@@ -59,3 +59,5 @@ This has been edited on behalf of 05-1 action.
     cancelled() →
     always()
     ```
+
+PR trigger해서 github.context.event.pull_request invoke하기
