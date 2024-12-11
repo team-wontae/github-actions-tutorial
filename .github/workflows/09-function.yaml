@@ -6,6 +6,17 @@ jobs:
   echo1:
     runs-on: ubuntu-latest
     steps:
+      - name: Print PR title
+        run: echo "${{github.event.pull_request.title}}"
+        # sciprt injection attack에 취약한 방법이기는 하다
+      - name: Print PR labels
+        run: |
+          cat << EOF
+          ${{toJson(github.event.pull_request.labels)}}
+          EOF
+      - name: Bug step
+        if: ${{!cancelled() && contains(github.event.pull_request.title, 'fix')}}
+        run: echo "I am bug fix"
       - name: Failing step
         run: exit 1
         # step automatically fails
