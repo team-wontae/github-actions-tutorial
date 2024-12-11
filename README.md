@@ -35,3 +35,27 @@ This has been edited on behalf of 05-1 action.
     - Organization 만들고, organization value를 만들기 위해 리포지토리를 organization으로 옮김
     - Repository variables은 Repo에서 설정가능
     - Enviornment variables은 dev, prod, staging같은 각각의 환경에서 쓰이는 변수
+
+### Function
+
+- General purpose functions(methods)
+
+  - utility functions to interact with data from contexts, and model more complex behavior like more advanced control workflow and job execution
+    ```
+    contains()
+    startsWith()
+    endsWith()
+    fromJSON() → Deserialize, env변수를 가져올때도 사용한다
+    toJSON() → Serialize
+    hashFiles()
+    ...
+    ```
+
+- Status check functions
+  - Functions that can use the status of the workflow, previous jobs or steps to define whether a certain job or step should be executed
+    ```
+    success() → previous jobs or steps all succeeded?
+    failure() → any of them failed?
+    cancelled() →
+    always()
+    ```
