@@ -1,12 +1,13 @@
 name: 08 - Using Variables
 
 on:
-  push:
+  # push: (WRAP UP)
   workflow_dispatch:
 
 env:
   WORKFLOW_VAR: "I am a workflow env var"
   OVERWRITTEN: "I will be overwritten"
+  UNDEFINED_VAR_WITH_DEFAULT: ${{vars.UNDEFINED_VAR || 'default value'}}
 
 jobs:
   echo:
@@ -67,4 +68,7 @@ jobs:
       - name: Print Undefined Variables
         run: |
           echo "Org var: ${{vars.UNDEFINED_VAR || 'default value'}}"
-        # 1회성으로 default를 준다면 이렇게 할 수 있는데,
+          echo "Org var: ${{vars.UNDEFINED_VAR_WITH_DEFAULT}}"
+        # 1회성으로 default를 준다면 이렇게 할 수 있는데, 이 변수를 쓸때마다
+        # 이렇게 short-circuiting을 해주면 코드가 길어지니까,
+        # Single workflow env에 선언해서 전체적으로 사용할 수 있게 해준다.
