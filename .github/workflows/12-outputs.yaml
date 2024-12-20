@@ -14,13 +14,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
+      # 이후에 access할수 있게 해주려면
+      # outputs의 key를 정해주면 된다.
       build-status: ${{steps.build.outputs.status}}
+      output1: ${{steps.build.outputs.output1}}
     steps:
       - name: Print GITHUB_OUTPUT path
         run: echo "$GITHUB_OUTPUT" # 깃헙이 정해주는 ouput file의 path
       - name: Build
         id: build
-        run: echo "status=${{inputs.build-status}}" >> "$GITHUB_OUTPUT" # output은 key-value로 준다
+        # output은 key-value로 준다
+        # step은 각자 다른 GITHUB_OUTPUT을 가진다. 그러므로 interference 없다.
+        run: |
+          echo "$GITHUB_OUTPUT" 
+          echo "status=${{inputs.build-status}}" >> "$GITHUB_OUTPUT" 
+          echo "output1=value1" >> "$GITHUB_OUTPUT"
+          echo "output2=value2" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -28,3 +38,6 @@ jobs:
     steps:
       - name: Deploy
         run: echo "Deploying"
+      - name: Print Outputs
+        run: |
+          echo "Output 1: ${{needs.build.outputs.output1}}"
