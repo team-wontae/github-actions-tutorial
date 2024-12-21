@@ -1,0 +1,9 @@
+name: 14 - Working with Artifacts
+
+on:
+  workflow_dispatch:
+
+jobs:
+  # builing the project and upload the artifact
+  build:
+  deploy:
