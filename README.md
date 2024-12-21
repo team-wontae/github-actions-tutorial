@@ -61,3 +61,24 @@ This has been edited on behalf of 05-1 action.
     ```
 
 PR trigger해서 github.context.event.pull_request invoke하기
+
+### Artifacts
+
+- Stored for up to 90 days
+- Managed via 2 actions
+  - upload-artifact
+  - download-artifact
+    - 같은 workflow에서 업로드된 artifact만 다운로드 가능하다
+- Recommended when the stored files are likely to be accessed outside the workflow, for example
+  - Build outupus
+  - Test results
+  - Logs
+  - Uploading and downloading the build outputs for deployments
+
+### Caching
+
+- Stored for up to 7 days
+- Managed via a single action
+  - cache
+- Recommended when the stored files are likely to be accessed only within the workflow, for example
+  - Build dependencies
