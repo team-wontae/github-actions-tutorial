@@ -3,6 +3,9 @@ name: 14 - Working with Artifacts
 on:
   workflow_dispatch:
 
+env:
+  build-artifact-key: app-${{github.sha}}
+
 jobs:
   # builing the project and upload the artifact
   test-build:
@@ -34,17 +37,16 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           # artifact를 나중에 다시 찾을 수 있도록 하는 reference name
-          name: app
-          # artifact의 reference name
+          name: ${{env.build-artifact-key}}
           path: 14-artifacts/react-app/dist
 
   deploy:
     needs: test-build
-    runs-on: ubunt-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
-          name: app
+          name: ${{env.build-artifact-key}}
       - name: Show folder structure
         run: ls -R
