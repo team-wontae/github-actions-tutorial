@@ -37,3 +37,28 @@ jobs:
           sleep 10
       - name: Upload test results
         run: echo "Uploading test result"
+
+  include-example:
+    name: ${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # 2 X 2 X 2 + include
+        color: [red, green]
+        shape: [circle, square]
+        size: [small, large]
+        include:
+          - color: red
+            shape: triangle
+            # overwriting안하고 추가될 수 있으면 바로 추가되고,
+            # 뭔가 conflict가 있어서 overwrite이 필요하면 include의 config가 overwrite한다
+            # 여기서는 2X2X2이기 때문에, include의 red-triangle만으로는 overwrite가 안되고
+            # 그냥 red-triangle만 추가될 뿐
+            # 즉 overwrite하려면 아예 새로운 것이거나,
+            # 이미 있는 키워드라면 2X2X2 combination을 만족해야 하고, size prop도 있었어야 했다.
+
+    # Strategy만 남아있는건 말이 안되기 때문에
+    # Dummy라고 하더라도 step을 만들어줘야 합니다.
+    steps:
+      - name: Dummy step
+        run: echo "${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size }}"
