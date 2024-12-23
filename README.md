@@ -82,3 +82,33 @@ PR trigger해서 github.context.event.pull_request invoke하기
   - cache
 - Recommended when the stored files are likely to be accessed only within the workflow, for example
   - Build dependencies
+
+### Matrices
+
+- Job level에서 strategy.matrix로 정의한다
+  - jobs.job_name.strategy.matrix
+  - Cartesian product [] X []
+- Don't have to copy the same job over and over again
+
+  - Run several variations of the same job
+  - 카르테시안 곱의 수만큼의 job이 실행된다.
+
+  - provide key-value pairs
+  - each key will become available at the matrix context
+
+- On private repositories, it might surge the billing, so be careful
+
+```yml
+jobs:
+  backwards-compatibility:
+    name: ${{matrix.os}}-${{matrix.node}}
+    strategy:
+      matrix:
+        node: [14, 16, 18] # keys
+        os: [ubuntu-latest, macos-latest] # values
+    runs-on: ${{matrix.os}}
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{matrix.node}}
+```
