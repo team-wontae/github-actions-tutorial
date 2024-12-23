@@ -70,6 +70,17 @@ jobs:
           - color: red
             # color가 red라면, opacity가 75
             opacity: 75
+          - color: green
+            shape: circle
+            size: small
+
+        exclude:
+          # include가 process 전에 실행된다
+          # 그러므러 include에 있는 key를 exclude에 먼저 등록해도 작동하지 않는다
+          - color: green
+            shape: circle
+          # 이렇게 하면, greem-circle 키를 가진 애들은 전부 제외된다
+          # 전체를 match해야하는게 아니라 부분적으로만 match해도 exclude됨
 
     # Strategy만 남아있는건 말이 안되기 때문에
     # Dummy라고 하더라도 step을 만들어줘야 합니다.
