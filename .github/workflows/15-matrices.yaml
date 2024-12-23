@@ -39,7 +39,7 @@ jobs:
         run: echo "Uploading test result"
 
   include-example:
-    name: ${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size }}
+    name: ${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size}}-${{ matrix.opacity}}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -56,9 +56,23 @@ jobs:
             # 그냥 red-triangle만 추가될 뿐
             # 즉 overwrite하려면 아예 새로운 것이거나,
             # 이미 있는 키워드라면 2X2X2 combination을 만족해야 하고, size prop도 있었어야 했다.
+          - opacity: 50
+            # 단독적으로 opacity하나만 있고 겹치지 않는다
+            # 그러므로 모든 2X2X2에 -martix.opacity가 추가되는 것
+
+            # 이 믿으로는 key가 겹치거나 해서 overwrite가 실행되는 것들이다
+          - shape: circle
+            opacity: 50
+            # circle을 가지고 있다면, opacity 50이 추가될 것
+          - color: red
+            # color가 red라면, shape가 triangle이 될 것
+            shape: triangle
+          - color: red
+            # color가 red라면, opacity가 75
+            opacity: 75
 
     # Strategy만 남아있는건 말이 안되기 때문에
     # Dummy라고 하더라도 step을 만들어줘야 합니다.
     steps:
       - name: Dummy step
-        run: echo "${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size }}"
+        run: echo "${{ matrix.color}}-${{ matrix.shape}}-${{ matrix.size}}-${{ matrix.opacity}}"
