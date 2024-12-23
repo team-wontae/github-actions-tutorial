@@ -118,3 +118,13 @@ jobs:
   - 카르테시안 곱의 job들 중에 하나라도 실패하면, 나머지 job들이 cancel되는 것
   - strategy에서 정의
     - true(default) or false
+
+### Environments
+
+Create multiple environments with different rules for multiple deployments
+
+- Staging, UAT(User acceptance testing), Prod 등 다양한 environemnt를 만들 수 있다
+
+- Required approvers를 줘서 manual approvals을 줄 수도 있고, branche restrictions도 가능하다.
+
+- Private Repo에서는 빌링이 발생할수도 있다.
