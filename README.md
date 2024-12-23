@@ -103,6 +103,7 @@ jobs:
   backwards-compatibility:
     name: ${{matrix.os}}-${{matrix.node}}
     strategy:
+      fail-fast: false
       matrix:
         node: [14, 16, 18] # keys
         os: [ubuntu-latest, macos-latest] # values
@@ -112,3 +113,8 @@ jobs:
         with:
           node-version: ${{matrix.node}}
 ```
+
+- Fail fast strategy
+  - 카르테시안 곱의 job들 중에 하나라도 실패하면, 나머지 job들이 cancel되는 것
+  - strategy에서 정의
+    - true(default) or false
